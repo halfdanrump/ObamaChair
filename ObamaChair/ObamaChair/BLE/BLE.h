@@ -38,7 +38,7 @@
 
 -(void) enableReadNotification:(CBPeripheral *)p;
 -(void) read;
--(void) writeValue:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID p:(CBPeripheral *)p data:(NSData *)data;
+-(void) writeValue:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID p:(CBPeripheral *)p data:(NSData   *)data;
 
 -(BOOL) isConnected;
 -(void) write:(NSData *)d;

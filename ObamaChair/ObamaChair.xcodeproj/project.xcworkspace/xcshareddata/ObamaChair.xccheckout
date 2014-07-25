@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F1074932-DCDA-4FEF-B541-99CD5EEE2F9F</string>
+	<string>DC14E5C0-6DC9-4669-81CD-B7C16729C715</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ObamaChair</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</key>
-		<string>https://github.com/halfdanrump/obamachair.git</string>
+		<key>6A69C898-4DB0-4D24-9479-1AB8B9202705</key>
+		<string>https://github.com/halfdanrump/ObamaChair.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ObamaChair/ObamaChair.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</key>
+		<key>6A69C898-4DB0-4D24-9479-1AB8B9202705</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/halfdanrump/obamachair.git</string>
+	<string>https://github.com/halfdanrump/ObamaChair.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</string>
+	<string>6A69C898-4DB0-4D24-9479-1AB8B9202705</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</string>
+			<string>6A69C898-4DB0-4D24-9479-1AB8B9202705</string>
 			<key>IDESourceControlWCCName</key>
-			<string>obamachair</string>
+			<string>ObamaChair</string>
 		</dict>
 	</array>
 </dict>

@@ -15,6 +15,7 @@
 @synthesize btnConnect;
 
 int timeout = 2;
+NSTimer *rssiTimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,6 +24,7 @@ int timeout = 2;
         // Custom initialization
     }
     return self;
+
 }
 
 - (void)viewDidLoad
@@ -31,9 +33,19 @@ int timeout = 2;
     self.ble = [[BLE alloc] init];
     [self.ble controlSetup];
     self.ble.delegate = self;
-
+    self.view.backgroundColor = [UIColor blackColor];
+    
+//    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(obamaWasTapped)];
+//    [self.faceImageContainer addGestureRecognizer:singleTap];
+//    [self.faceImageContainer setMultipleTouchEnabled:YES];
+//    [self.faceImageContainer setUserInteractionEnabled:YES];
+//   [self.faceImageContainer add];
     // Do any additional setup after loading the view.
 }
+
+//-(void)obamaWasTapped{
+//    NSLog(@"YOU TOUCHED OBAMAS FACE!");
+//}
 
 
 
@@ -75,23 +87,55 @@ int timeout = 2;
     
 }
 
--(void) connectionTimer:(NSTimer *)timer
+
+
+
+////
+//-(void) bleDidConnect
+//{
+//    NSLog(@"->Connected");
+//    
+//    
+//    //[colorthing backgroundColor: @"[UIColor redColor]"];
+//    
+//    self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
+//    self.view.backgroundColor = [UIColor blueColor];
+//    
+//    
+//    
+//    // send reset
+//    UInt8 buf[] = {0x04, 0x00, 0x00, 0x00};
+//    NSData *data = [[NSData alloc] initWithBytes:buf length:4];
+//    [ble write:data];
+//    
+//    // Schedule to read RSSI every 1 sec.
+//    rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
+//   
+//}
+
+-(void) readRSSITimer:(NSTimer *)timer
 {
-    [self.btnConnect setEnabled:true];
-    [self.btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+    [ble readRSSI];
+}
+
+- (void)bleDidDisconnect
+{
+    NSLog(@"->Disconnected");
     
-    if (self.ble.peripherals.count > 0)
-    {
-        [self.ble connectPeripheral:[self.ble.peripherals objectAtIndex:0]];
-    }
-    else
-    {
-        [self.btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
-    }
+    [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+    self.faceImageContainer.image = nil;
+    
+    
+    [rssiTimer invalidate];
+}
+
+// When RSSI is changed, this will be called
+-(void) bleDidUpdateRSSI:(NSNumber *) rssi
+{
 }
 
 
-//
+// When disconnected, this will be called
 -(void) bleDidConnect
 {
     NSLog(@"->Connected");
@@ -100,7 +144,6 @@ int timeout = 2;
     //[colorthing backgroundColor: @"[UIColor redColor]"];
     
     self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
-    self.view.backgroundColor = [UIColor blueColor];
     
     
     
@@ -110,12 +153,72 @@ int timeout = 2;
     [ble write:data];
     
     // Schedule to read RSSI every 1 sec.
-//    rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
+    rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
     
     UInt8 bufm[3] = {0xA0, 0x01, 0x00};
     
     NSData *datam = [[NSData alloc] initWithBytes:bufm length:3];
     [ble write:datam];
+}
+
+// When data is comming, this will be called
+-(void) bleDidReceiveData:(unsigned char *)data length:(int)length
+{
+    //    NSLog(@"Length: %d", length);
+    UInt16 Value;
+    UInt16 reading_left, reading_right, reading_back;
+    for (int i = 0; i < length; i+=4)
+    {
+//        NSLog(@"0x%02X, 0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2], data[i+3]);
+        
+        if (data[i] == 0x0B)
+        {
+            reading_left = data[i+1];
+            reading_right = data[i+2];
+            reading_back = data[i+3];
+            Value = data[i+2] | data[i+1] << 8;
+            
+            
+        }
+    }
+    float red = reading_left / 255.0f;
+    float blue = reading_right / 255.0f;
+    float green = reading_back / 255.0f;
+    NSLog(@"red: 0x%02f, green: 0x%02f, blue: 0x%02f", red, green, blue);
+    //    NSLog(@"%0.0f", red);
+    
+//    [UIView animateWithDuration : 0.5
+//                          delay : 0
+//                        options : UIViewAnimationOptionBeginFromCurrentState
+//                     animations : (void (^)(void)) ^{
+//                         self.faceImageContainer.transform = CGAffineTransformMakeScale(1.2, 1.2);
+//                     }
+//                     completion:^(BOOL finished){
+//                         self.faceImageContainer.transform = CGAffineTransformIdentity;
+//                     }];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    
+}
+
+
+
+
+
+
+-(void) connectionTimer:(NSTimer *)timer
+{
+    [btnConnect setEnabled:true];
+    [btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+    
+    if (ble.peripherals.count > 0)
+    {
+        [ble connectPeripheral:[ble.peripherals objectAtIndex:0]];
+    }
+    else
+    {
+        [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+    }
 }
 
 

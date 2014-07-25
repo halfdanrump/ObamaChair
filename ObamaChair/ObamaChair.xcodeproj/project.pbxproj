@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064B687B1982418800B7435F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 064B687A1982418800B7435F /* icon.png */; };
 		069099C51981F898005AB618 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C41981F898005AB618 /* Foundation.framework */; };
 		069099C71981F898005AB618 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C61981F898005AB618 /* CoreGraphics.framework */; };
 		069099C91981F898005AB618 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C81981F898005AB618 /* UIKit.framework */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		064B687A1982418800B7435F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../artwork/icon.png; sourceTree = "<group>"; };
 		069099C11981F898005AB618 /* ObamaChair.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObamaChair.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		069099C41981F898005AB618 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		069099C61981F898005AB618 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +139,7 @@
 		069099CB1981F898005AB618 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				064B687A1982418800B7435F /* icon.png */,
 				06909A061982158E005AB618 /* ObamaCutout2.png */,
 				069099CC1981F898005AB618 /* ObamaChair-Info.plist */,
 				069099CD1981F898005AB618 /* InfoPlist.strings */,
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				069099E01981F898005AB618 /* Images.xcassets in Resources */,
+				064B687B1982418800B7435F /* icon.png in Resources */,
 				06909A071982158E005AB618 /* ObamaCutout2.png in Resources */,
 				069099CF1981F898005AB618 /* InfoPlist.strings in Resources */,
 				069099D81981F898005AB618 /* Main.storyboard in Resources */,
@@ -482,6 +486,7 @@
 				069099F81981F898005AB618 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		069099F91981F898005AB618 /* Build configuration list for PBXNativeTarget "ObamaChairTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +495,7 @@
 				069099FB1981F898005AB618 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
