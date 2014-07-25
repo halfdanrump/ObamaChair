@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		069099C51981F898005AB618 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C41981F898005AB618 /* Foundation.framework */; };
+		069099C71981F898005AB618 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C61981F898005AB618 /* CoreGraphics.framework */; };
+		069099C91981F898005AB618 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C81981F898005AB618 /* UIKit.framework */; };
+		069099CF1981F898005AB618 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 069099CD1981F898005AB618 /* InfoPlist.strings */; };
+		069099D11981F898005AB618 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 069099D01981F898005AB618 /* main.m */; };
+		069099D51981F898005AB618 /* OBCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 069099D41981F898005AB618 /* OBCAppDelegate.m */; };
+		069099D81981F898005AB618 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069099D61981F898005AB618 /* Main.storyboard */; };
+		069099E01981F898005AB618 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 069099DF1981F898005AB618 /* Images.xcassets */; };
+		069099E71981F898005AB618 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099E61981F898005AB618 /* XCTest.framework */; };
+		069099E81981F898005AB618 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C41981F898005AB618 /* Foundation.framework */; };
+		069099E91981F898005AB618 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069099C81981F898005AB618 /* UIKit.framework */; };
+		069099F11981F898005AB618 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 069099EF1981F898005AB618 /* InfoPlist.strings */; };
+		069099F31981F898005AB618 /* ObamaChairTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 069099F21981F898005AB618 /* ObamaChairTests.m */; };
+		069099FE1981FEA9005AB618 /* OBCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 069099FD1981FEA9005AB618 /* OBCMainViewController.m */; };
+		06909A071982158E005AB618 /* ObamaCutout2.png in Resources */ = {isa = PBXBuildFile; fileRef = 06909A061982158E005AB618 /* ObamaCutout2.png */; };
+		06909A0919821803005AB618 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06909A0819821803005AB618 /* CoreBluetooth.framework */; };
+		06909A141982272A005AB618 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 06909A10198219B5005AB618 /* BLE.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		069099EA1981F898005AB618 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 069099B91981F898005AB618 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 069099C01981F898005AB618;
+			remoteInfo = ObamaChair;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		069099C11981F898005AB618 /* ObamaChair.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObamaChair.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		069099C41981F898005AB618 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		069099C61981F898005AB618 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		069099C81981F898005AB618 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		069099CC1981F898005AB618 /* ObamaChair-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObamaChair-Info.plist"; sourceTree = "<group>"; };
+		069099CE1981F898005AB618 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		069099D01981F898005AB618 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		069099D21981F898005AB618 /* ObamaChair-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObamaChair-Prefix.pch"; sourceTree = "<group>"; };
+		069099D31981F898005AB618 /* OBCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBCAppDelegate.h; sourceTree = "<group>"; };
+		069099D41981F898005AB618 /* OBCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBCAppDelegate.m; sourceTree = "<group>"; };
+		069099D71981F898005AB618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		069099DF1981F898005AB618 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		069099E51981F898005AB618 /* ObamaChairTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObamaChairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		069099E61981F898005AB618 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		069099EE1981F898005AB618 /* ObamaChairTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObamaChairTests-Info.plist"; sourceTree = "<group>"; };
+		069099F01981F898005AB618 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		069099F21981F898005AB618 /* ObamaChairTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObamaChairTests.m; sourceTree = "<group>"; };
+		069099FC1981FEA9005AB618 /* OBCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBCMainViewController.h; sourceTree = "<group>"; };
+		069099FD1981FEA9005AB618 /* OBCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCMainViewController.m; sourceTree = "<group>"; };
+		06909A061982158E005AB618 /* ObamaCutout2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ObamaCutout2.png; sourceTree = "<group>"; };
+		06909A0819821803005AB618 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		06909A0F198219B5005AB618 /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
+		06909A10198219B5005AB618 /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
+		06909A11198219B5005AB618 /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		069099BE1981F898005AB618 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06909A0919821803005AB618 /* CoreBluetooth.framework in Frameworks */,
+				069099C71981F898005AB618 /* CoreGraphics.framework in Frameworks */,
+				069099C91981F898005AB618 /* UIKit.framework in Frameworks */,
+				069099C51981F898005AB618 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		069099E21981F898005AB618 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				069099E71981F898005AB618 /* XCTest.framework in Frameworks */,
+				069099E91981F898005AB618 /* UIKit.framework in Frameworks */,
+				069099E81981F898005AB618 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		069099B81981F898005AB618 = {
+			isa = PBXGroup;
+			children = (
+				069099CA1981F898005AB618 /* ObamaChair */,
+				069099EC1981F898005AB618 /* ObamaChairTests */,
+				069099C31981F898005AB618 /* Frameworks */,
+				069099C21981F898005AB618 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		069099C21981F898005AB618 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				069099C11981F898005AB618 /* ObamaChair.app */,
+				069099E51981F898005AB618 /* ObamaChairTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		069099C31981F898005AB618 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06909A0E198219B5005AB618 /* BLE */,
+				06909A0819821803005AB618 /* CoreBluetooth.framework */,
+				069099C41981F898005AB618 /* Foundation.framework */,
+				069099C61981F898005AB618 /* CoreGraphics.framework */,
+				069099C81981F898005AB618 /* UIKit.framework */,
+				069099E61981F898005AB618 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		069099CA1981F898005AB618 /* ObamaChair */ = {
+			isa = PBXGroup;
+			children = (
+				069099D31981F898005AB618 /* OBCAppDelegate.h */,
+				069099D41981F898005AB618 /* OBCAppDelegate.m */,
+				069099D61981F898005AB618 /* Main.storyboard */,
+				069099DF1981F898005AB618 /* Images.xcassets */,
+				069099CB1981F898005AB618 /* Supporting Files */,
+				069099FC1981FEA9005AB618 /* OBCMainViewController.h */,
+				069099FD1981FEA9005AB618 /* OBCMainViewController.m */,
+			);
+			path = ObamaChair;
+			sourceTree = "<group>";
+		};
+		069099CB1981F898005AB618 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06909A061982158E005AB618 /* ObamaCutout2.png */,
+				069099CC1981F898005AB618 /* ObamaChair-Info.plist */,
+				069099CD1981F898005AB618 /* InfoPlist.strings */,
+				069099D01981F898005AB618 /* main.m */,
+				069099D21981F898005AB618 /* ObamaChair-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		069099EC1981F898005AB618 /* ObamaChairTests */ = {
+			isa = PBXGroup;
+			children = (
+				069099F21981F898005AB618 /* ObamaChairTests.m */,
+				069099ED1981F898005AB618 /* Supporting Files */,
+			);
+			path = ObamaChairTests;
+			sourceTree = "<group>";
+		};
+		069099ED1981F898005AB618 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				069099EE1981F898005AB618 /* ObamaChairTests-Info.plist */,
+				069099EF1981F898005AB618 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06909A0E198219B5005AB618 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				06909A0F198219B5005AB618 /* BLE.h */,
+				06909A10198219B5005AB618 /* BLE.m */,
+				06909A11198219B5005AB618 /* BLEDefines.h */,
+			);
+			name = BLE;
+			path = ObamaChair/BLE;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		069099C01981F898005AB618 /* ObamaChair */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 069099F61981F898005AB618 /* Build configuration list for PBXNativeTarget "ObamaChair" */;
+			buildPhases = (
+				069099BD1981F898005AB618 /* Sources */,
+				069099BE1981F898005AB618 /* Frameworks */,
+				069099BF1981F898005AB618 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ObamaChair;
+			productName = ObamaChair;
+			productReference = 069099C11981F898005AB618 /* ObamaChair.app */;
+			productType = "com.apple.product-type.application";
+		};
+		069099E41981F898005AB618 /* ObamaChairTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 069099F91981F898005AB618 /* Build configuration list for PBXNativeTarget "ObamaChairTests" */;
+			buildPhases = (
+				069099E11981F898005AB618 /* Sources */,
+				069099E21981F898005AB618 /* Frameworks */,
+				069099E31981F898005AB618 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				069099EB1981F898005AB618 /* PBXTargetDependency */,
+			);
+			name = ObamaChairTests;
+			productName = ObamaChairTests;
+			productReference = 069099E51981F898005AB618 /* ObamaChairTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		069099B91981F898005AB618 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = OBC;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "ハルフダン ランプ";
+				TargetAttributes = {
+					069099E41981F898005AB618 = {
+						TestTargetID = 069099C01981F898005AB618;
+					};
+				};
+			};
+			buildConfigurationList = 069099BC1981F898005AB618 /* Build configuration list for PBXProject "ObamaChair" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 069099B81981F898005AB618;
+			productRefGroup = 069099C21981F898005AB618 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				069099C01981F898005AB618 /* ObamaChair */,
+				069099E41981F898005AB618 /* ObamaChairTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		069099BF1981F898005AB618 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				069099E01981F898005AB618 /* Images.xcassets in Resources */,
+				06909A071982158E005AB618 /* ObamaCutout2.png in Resources */,
+				069099CF1981F898005AB618 /* InfoPlist.strings in Resources */,
+				069099D81981F898005AB618 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		069099E31981F898005AB618 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				069099F11981F898005AB618 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		069099BD1981F898005AB618 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06909A141982272A005AB618 /* BLE.m in Sources */,
+				069099D11981F898005AB618 /* main.m in Sources */,
+				069099D51981F898005AB618 /* OBCAppDelegate.m in Sources */,
+				069099FE1981FEA9005AB618 /* OBCMainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		069099E11981F898005AB618 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				069099F31981F898005AB618 /* ObamaChairTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		069099EB1981F898005AB618 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 069099C01981F898005AB618 /* ObamaChair */;
+			targetProxy = 069099EA1981F898005AB618 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		069099CD1981F898005AB618 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				069099CE1981F898005AB618 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		069099D61981F898005AB618 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				069099D71981F898005AB618 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		069099EF1981F898005AB618 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				069099F01981F898005AB618 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		069099F41981F898005AB618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		069099F51981F898005AB618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		069099F71981F898005AB618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObamaChair/ObamaChair-Prefix.pch";
+				INFOPLIST_FILE = "ObamaChair/ObamaChair-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		069099F81981F898005AB618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObamaChair/ObamaChair-Prefix.pch";
+				INFOPLIST_FILE = "ObamaChair/ObamaChair-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		069099FA1981F898005AB618 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ObamaChair.app/ObamaChair";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObamaChair/ObamaChair-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ObamaChairTests/ObamaChairTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		069099FB1981F898005AB618 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ObamaChair.app/ObamaChair";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ObamaChair/ObamaChair-Prefix.pch";
+				INFOPLIST_FILE = "ObamaChairTests/ObamaChairTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		069099BC1981F898005AB618 /* Build configuration list for PBXProject "ObamaChair" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				069099F41981F898005AB618 /* Debug */,
+				069099F51981F898005AB618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		069099F61981F898005AB618 /* Build configuration list for PBXNativeTarget "ObamaChair" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				069099F71981F898005AB618 /* Debug */,
+				069099F81981F898005AB618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		069099F91981F898005AB618 /* Build configuration list for PBXNativeTarget "ObamaChairTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				069099FA1981F898005AB618 /* Debug */,
+				069099FB1981F898005AB618 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 069099B91981F898005AB618 /* Project object */;
+}

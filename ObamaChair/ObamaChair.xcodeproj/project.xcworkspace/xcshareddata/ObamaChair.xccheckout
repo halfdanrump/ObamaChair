@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F1074932-DCDA-4FEF-B541-99CD5EEE2F9F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ObamaChair</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</key>
+		<string>https://github.com/halfdanrump/obamachair.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ObamaChair/ObamaChair.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/halfdanrump/obamachair.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CA6D4A58-7E42-48EF-89E3-F1CA7DB94167</string>
+			<key>IDESourceControlWCCName</key>
+			<string>obamachair</string>
+		</dict>
+	</array>
+</dict>
+</plist>
