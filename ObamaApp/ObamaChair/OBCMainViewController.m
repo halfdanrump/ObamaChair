@@ -15,6 +15,8 @@
 @synthesize btnConnect;
 
 int timeout = 2;
+float norm_sides = 0.2f;
+float norm_back = 0.34f;
 NSTimer *rssiTimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,19 +37,20 @@ NSTimer *rssiTimer;
     self.ble = [[BLE alloc] init];
     [self.ble controlSetup];
     self.ble.delegate = self;
-    self.view.backgroundColor = [UIColor blackColor];
-    self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
-    self.faceImageContainer.alpha = 0;
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(obamaWasTapped)];
     [self.faceImageContainer addGestureRecognizer:singleTap];
     [self.faceImageContainer setMultipleTouchEnabled:YES];
     [self.faceImageContainer setUserInteractionEnabled:YES];
+    [self connectBLE];
     // Do any additional setup after loading the view.
 }
 
 -(void)obamaWasTapped{
     NSLog(@"YOU TOUCHED OBAMAS FACE!");
-    [self scaleFaceImage:0];
+        [self scaleFaceImage:0];
 }
 
 
@@ -71,9 +74,7 @@ NSTimer *rssiTimer;
 }
 */
 
-- (IBAction)btnConnectPressed:(id)sender {
-    
-    
+-(void) connectBLE{
     if (self.ble.activePeripheral)
         if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
         {
@@ -87,6 +88,25 @@ NSTimer *rssiTimer;
     [self.ble findBLEPeripherals:timeout];
     
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
+}
+
+- (IBAction)btnConnectPressed:(id)sender {
+    
+    
+//    if (self.ble.activePeripheral)
+//        if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
+//        {
+//            [[self.ble CM] cancelPeripheralConnection:[ble activePeripheral]];
+//            return;
+//        }
+//    
+//    if (self.ble.peripherals)
+//        self.ble.peripherals = nil;
+//    [self.btnConnect setEnabled:false];
+//    [self.ble findBLEPeripherals:timeout];
+//    
+//    [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
+    [self connectBLE];
     
 }
 
@@ -118,16 +138,7 @@ NSTimer *rssiTimer;
 -(void) bleDidConnect
 {
     NSLog(@"->Connected");
-    
-    
-
-
-    self.faceImageContainer.alpha = 0.5;
-//    [self fadeInObama];
-//    [UIView animateWithDuration:5.0 animations:^{
-//        self.faceImageContainer.alpha = 0.5;
-//    }];
-    
+    self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
     // send reset
     UInt8 buf[] = {0x04, 0x00, 0x00, 0x00};
     NSData *data = [[NSData alloc] initWithBytes:buf length:4];
@@ -148,16 +159,16 @@ NSTimer *rssiTimer;
     for (int i = 0; i < length; i+=4){
         if (data[i] == 0x0B)
         {
-            self.reading_left = 1.0f - data[i+1] / 255.0f;
-            self.reading_right = 1.0f - data[i+2] / 255.0f;
-            self.reading_back = 1.0f - data[i+3] / 255.0f;
+            self.reading_left = MAX((1.0f - data[i+1] / 255.0f) * (1.0f + norm_sides) - norm_sides, 0);
+            self.reading_right = MAX((1.0f - data[i+2] / 255.0f) * (1.0f + norm_sides) - norm_sides, 0);
+            self.reading_back = MAX((1.0f - data[i+3] / 255.0f) * (1.0f + norm_back) - norm_back, 0);
         }
     }
-//    NSLog(@"red: %02f, green: %02f, blue: %02f", red, green, blue);
+    NSLog(@"left: %02f, right: %02f, back: %02f", self.reading_left, self.reading_right, self.reading_back);
 //    scaling = 0.5 + red * green * blue;
     
 //    [NSTimer scheduledTimerWithTimeInterval:(float)0.51 target:self selector:@selector(scaleFaceImage:) userInfo:nil repeats:NO];
-    
+//    self.view.backgroundColor = [UIColor color]
     self.view.backgroundColor = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
     
 }
