@@ -12,8 +12,6 @@
 
 
 @interface OBCMainViewController : UIViewController <BLEDelegate>
-- (IBAction)btnConnectPressed:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *btnConnect;
 @property (strong, nonatomic) IBOutlet UIImageView *faceImageContainer;
 @property (strong, nonatomic) BLE *ble;
 @property (strong, nonatomic) NSArray *color;
@@ -29,7 +27,11 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *btnPresetOne;
 @property (strong, nonatomic) IBOutlet UIButton *btnSensorStatus;
+@property (strong, nonatomic) IBOutlet UILabel *lblGreetingTop;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic) IBOutlet UILabel *lblGreetingButton;
+@property (strong, nonatomic) NSTimer *distanceTimer;
 
+@property (strong, nonatomic) CABasicAnimation* faceAnimation;
 @end

@@ -11,7 +11,7 @@
 
 @implementation OBCMainViewController
 @synthesize ble;
-@synthesize btnConnect;
+//@synthesize btnConnect;
 
 int timeout = 2;
 float norm_sides = 0.2f;
@@ -32,12 +32,14 @@ NSTimer *rssiTimer;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 
+    
     self.color = [[NSArray alloc] init];
 
     self.view.backgroundColor = [UIColor whiteColor];
-    self.faceImageContainer.image = nil;
-    self.faceImageContainer.alpha = 0;
+    self.faceImageContainer.image = [UIImage imageNamed:@"FrontBama.png"];
+
     self.btnPresetOne.backgroundColor = [UIColor whiteColor];
     self.btnSensorStatus.backgroundColor = [UIColor whiteColor];
     
@@ -46,6 +48,7 @@ NSTimer *rssiTimer;
     self.ble.delegate = self;
     self.preset_one_set = false;
     self.distance_preset_one = 0.0f;
+    [self initAudioPlayer];
     
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(obamaWasTapped)];
@@ -54,14 +57,16 @@ NSTimer *rssiTimer;
     [self.faceImageContainer setUserInteractionEnabled:YES];
     // Do any additional setup after loading the view.
     
-    [NSTimer scheduledTimerWithTimeInterval:(float)0.1 target:self selector:@selector(checkDistanceForPreset) userInfo:nil repeats:YES];
 
+    
 }
 
 -(void)obamaWasTapped{
     NSLog(@"YOU TOUCHED OBAMAS FACE!");
-//    [self scaleFaceImage:10];
-//    self.btnConnect.backgroundColor = [UIColor redColor];
+    [self connectBLE];
+    [self rotateFaceImageWithAtSpeed:1.0f fromAngle:0 toAngle:2*M_PI andRepeat:INFINITY];
+//    [self rotateFaceImageWithAtSpeed: 5.0f]
+//    [self rotateFaceImageWithAtSpeed:5.0f];//    self.btnConnect.backgroundColor = [UIColor redColor];
 }
 
 
@@ -95,9 +100,6 @@ NSTimer *rssiTimer;
 
 
 
-- (IBAction)btnConnectPressed:(id)sender {
-    [self connectBLE];
-}
 
 -(void) connectBLE{
     if (self.ble.activePeripheral)
@@ -109,15 +111,12 @@ NSTimer *rssiTimer;
     
     if (self.ble.peripherals)
         self.ble.peripherals = nil;
-    [self.btnConnect setEnabled:false];
+//    [self.btnConnect setEnabled:false];
     [self.ble findBLEPeripherals:timeout];
     
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
 }
 
--(void) flashObamaText{
-    [self.btnConnect setTitle:@"Touch my face <3" forState:UIControlStateNormal];
-}
 
 - (IBAction)btnPreset1Pressed:(id)sender {
     if (self.preset_one_set) {
@@ -130,9 +129,7 @@ NSTimer *rssiTimer;
 
 }
 
-- (void)playAudio {
-//    [self playSound:@"cry1" :@"wav"];
-//
+-(void) initAudioPlayer{
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/cry1.wav", [[NSBundle mainBundle] resourcePath]];
     
     NSLog(@"%@",soundFilePath);
@@ -144,10 +141,16 @@ NSTimer *rssiTimer;
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     
     [self.audioPlayer setVolume:1.0];
+}
+
+- (void)playAudio {
+//    [self playSound:@"cry1" :@"wav"];
+//
     
     
-    [self.audioPlayer stop];
-    [self.audioPlayer setCurrentTime:0];
+    
+//    [self.audioPlayer stop];
+//    [self.audioPlayer setCurrentTime:0];
     [self.audioPlayer play];
 //
 //    
@@ -176,10 +179,17 @@ NSTimer *rssiTimer;
 {
     NSLog(@"->Disconnected");
     
-    [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
-    self.faceImageContainer.image = nil;
+    [self.faceImageContainer.layer removeAllAnimations];
+//    [self rotateFaceImageWithAtSpeed:100.0f];
     
-    
+//    [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+//    self.faceImageContainer.image = nil;
+
+    [self.distanceTimer invalidate];
+    self.lblGreetingButton.alpha = 1;
+    self.lblGreetingTop.alpha = 1;
+    self.faceImageContainer.image = [UIImage imageNamed:@"FrontBama.png"];
+
     [rssiTimer invalidate];
 }
 
@@ -194,17 +204,27 @@ NSTimer *rssiTimer;
 // When disconnected, this will be called
 -(void) bleDidConnect
 {
-    NSLog(@"->Connected");
     self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
+    [self.faceImageContainer.layer removeAllAnimations];
+//    [self rotateFaceImageWithAtSpeed:1 fromAngle:0 toAngle:-M_PI/2 andRepeat:1];
+//    [self rotateFaceImageWithAtSpeed:1 fromAngle:-M_PI/2 toAngle:M_PI/2 andRepeat:1];
+//    [self rotateFaceImageWithAtSpeed:1 fromAngle:M_PI/2 toAngle:0 andRepeat:1];
+    NSLog(@"->Connected");
+   self.distanceTimer = [NSTimer scheduledTimerWithTimeInterval:(float)0.1 target:self selector:@selector(checkDistanceForPreset) userInfo:nil repeats:YES];
+//    self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
     self.faceImageContainer.alpha = 1;
+    
+    self.lblGreetingButton.alpha = 0;
+    self.lblGreetingTop.alpha = 0;
+    
     // send reset
     UInt8 buf[] = {0x04, 0x00, 0x00, 0x00};
     NSData *data = [[NSData alloc] initWithBytes:buf length:4];
     [ble write:data];
     
     // Schedule to read RSSI every 1 sec.
-    rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
-    
+//    rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
+
 
 }
 
@@ -242,16 +262,25 @@ NSTimer *rssiTimer;
     
 }
 
--(void) scaleFaceImage:(float) scaling{
-    [UIView animateWithDuration : 0.5
-                          delay : 0
-                        options : UIViewAnimationOptionBeginFromCurrentState
-                     animations : (void (^)(void)) ^{
-                         self.faceImageContainer.transform = CGAffineTransformMakeScale(scaling, scaling);
-                     }
-                      completion:^(BOOL finished){
-                          self.faceImageContainer.transform = CGAffineTransformIdentity;
-                      }];
+-(void) rotateFaceImageWithAtSpeed:(float)speed fromAngle:(float) startAngle toAngle:(float) endAngle andRepeat:(int) n_repeat{
+    
+    self.faceAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    self.faceAnimation.fromValue = [NSNumber numberWithFloat:startAngle];
+    self.faceAnimation.toValue = [NSNumber numberWithFloat: endAngle];
+    self.faceAnimation.duration = speed;
+    self.faceAnimation.repeatCount = n_repeat;
+    [self.faceImageContainer.layer addAnimation:self.faceAnimation forKey:@"SpinAnimation"];
+    
+//    [UIView animateWithDuration : 0.5
+//                          delay : 0
+//                        options : UIViewAnimationOptionBeginFromCurrentState
+//                     animations : (void (^)(void)) ^{
+//                         self.faceImageContainer.transform = CGAffineTransformMakeScale(scaling, scaling);
+//                         self.faceImageContainer.transform = CGAffineTransformRotate(transform, degreesToRadians(-10));
+//                     }
+//                      completion:^(BOOL finished){
+//                          self.faceImageContainer.transform = CGAffineTransformIdentity;
+//                      }];
     
 //    [UIView animateWithDuration : 0.5
 //                          delay : 0
@@ -270,9 +299,9 @@ NSTimer *rssiTimer;
 
 -(void) connectionTimer:(NSTimer *)timer
 {
-    [btnConnect setEnabled:true];
+//    [btnConnect setEnabled:true];
     
-    [btnConnect setTitle:@"" forState:UIControlStateNormal];
+//    [btnConnect setTitle:@"" forState:UIControlStateNormal];
     
     if (ble.peripherals.count > 0)
     {
@@ -280,7 +309,7 @@ NSTimer *rssiTimer;
     }
     else
     {
-        [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
+//        [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
     }
 }
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ObamaChair/OBCMainViewController.m"
-            timestampString = "428307484.149694"
+            timestampString = "428312882.639155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "@implementation OBCMainViewController"
             landmarkType = "3">
          </BreakpointContent>
