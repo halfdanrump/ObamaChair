@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BLE/BLE.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface OBCMainViewController : UIViewController <BLEDelegate>
 - (IBAction)btnConnectPressed:(id)sender;
@@ -26,5 +28,8 @@
 //@property (atomic) Boolean preset_one_set;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnPresetOne;
+@property (strong, nonatomic) IBOutlet UIButton *btnSensorStatus;
+
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
 @end

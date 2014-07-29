@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ObamaChair/OBCMainViewController.m"
-            timestampString = "428303881.692367"
+            timestampString = "428307484.149694"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-calculateColorDistanceForLeft:andRight:andBack:andPreset:"
-            landmarkType = "5">
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "@implementation OBCMainViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

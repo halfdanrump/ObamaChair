@@ -16,8 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9O-yA-Qe8">
+                                <rect key="frame" x="40" y="436" width="240" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnPreset1Pressed:" destination="Z4B-uR-hon" eventType="touchUpInside" id="rLi-gG-4r6"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOD-qj-4d6">
-                                <rect key="frame" x="131" y="518" width="59" height="30"/>
+                                <rect key="frame" x="131" y="471" width="59" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Connect">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,13 +37,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQw-Kr-dwh">
-                                <rect key="frame" x="40" y="196" width="240" height="284"/>
+                                <rect key="frame" x="40" y="144" width="240" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yy-ra-r7K">
-                                <rect key="frame" x="110" y="54" width="100" height="100"/>
+                                <rect key="frame" x="110" y="36" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="1">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -46,6 +56,7 @@
                     <connections>
                         <outlet property="btnConnect" destination="dOD-qj-4d6" id="H5o-5h-Jnt"/>
                         <outlet property="btnPresetOne" destination="5Yy-ra-r7K" id="dVI-2h-RD0"/>
+                        <outlet property="btnSensorStatus" destination="G9O-yA-Qe8" id="vBw-BY-tU0"/>
                         <outlet property="faceImageContainer" destination="gQw-Kr-dwh" id="cPj-d0-1gx"/>
                     </connections>
                 </viewController>

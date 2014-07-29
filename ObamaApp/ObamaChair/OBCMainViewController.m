@@ -9,7 +9,6 @@
 #import "OBCMainViewController.h"
 
 
-
 @implementation OBCMainViewController
 @synthesize ble;
 @synthesize btnConnect;
@@ -17,6 +16,7 @@
 int timeout = 2;
 float norm_sides = 0.2f;
 float norm_back = 0.34f;
+float sensitivity = 0.2f;
 NSTimer *rssiTimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,7 +36,10 @@ NSTimer *rssiTimer;
     self.color = [[NSArray alloc] init];
 
     self.view.backgroundColor = [UIColor whiteColor];
+    self.faceImageContainer.image = nil;
+    self.faceImageContainer.alpha = 0;
     self.btnPresetOne.backgroundColor = [UIColor whiteColor];
+    self.btnSensorStatus.backgroundColor = [UIColor whiteColor];
     
     self.ble = [[BLE alloc] init];
     [self.ble controlSetup];
@@ -63,8 +66,9 @@ NSTimer *rssiTimer;
 
 
 -(void) checkDistanceForPreset{
-    if (self.distance_preset_one > 0.5) {
+    if (self.distance_preset_one > sensitivity) {
         self.faceImageContainer.image = [UIImage imageNamed:@"cryface.png"];
+        [self playAudio];
     } else{
         self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
     }
@@ -112,7 +116,7 @@ NSTimer *rssiTimer;
 }
 
 -(void) flashObamaText{
-    [self.btnConnect setTitle:@"Touch me face <3" forState:UIControlStateNormal];
+    [self.btnConnect setTitle:@"Touch my face <3" forState:UIControlStateNormal];
 }
 
 - (IBAction)btnPreset1Pressed:(id)sender {
@@ -124,6 +128,42 @@ NSTimer *rssiTimer;
 //    self.btnLeftReading.backgroundColor = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
 
 
+}
+
+- (void)playAudio {
+//    [self playSound:@"cry1" :@"wav"];
+//
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/cry1.wav", [[NSBundle mainBundle] resourcePath]];
+    
+    NSLog(@"%@",soundFilePath);
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+    
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+    [self.audioPlayer setVolume:1.0];
+    
+    
+    [self.audioPlayer stop];
+    [self.audioPlayer setCurrentTime:0];
+    [self.audioPlayer play];
+//
+//    
+}
+
+- (void)playSound :(NSString *)fName :(NSString *) ext{
+    SystemSoundID audioEffect;
+    NSString *path = [[NSBundle mainBundle] pathForResource : fName ofType :ext];
+    if ([[NSFileManager defaultManager] fileExistsAtPath : path]) {
+        NSURL *pathURL = [NSURL fileURLWithPath: path];
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef) pathURL, &audioEffect);
+        AudioServicesPlaySystemSound(audioEffect);
+    }
+    else {
+        NSLog(@"error, file not found: %@", path);
+    }
 }
 
 
@@ -156,6 +196,7 @@ NSTimer *rssiTimer;
 {
     NSLog(@"->Connected");
     self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
+    self.faceImageContainer.alpha = 1;
     // send reset
     UInt8 buf[] = {0x04, 0x00, 0x00, 0x00};
     NSData *data = [[NSData alloc] initWithBytes:buf length:4];
@@ -184,11 +225,11 @@ NSTimer *rssiTimer;
             self.reading_back = MAX((1.0f - data[i+3] / 255.0f) * (1.0f + norm_back) - norm_back, 0);
         }
     }
-    [self.btnPresetOne setFrame:CGRectMake(33, 36, 60, 60 * 1/self.reading_left)];
+//    [self.btnPresetOne setFrame:CGRectMake(33, 36, 60, 60 * 1/self.reading_left)];
 
     UIColor *current_color = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
-    
-    self.faceImageContainer.backgroundColor = current_color;
+    self.btnSensorStatus.backgroundColor = current_color;
+//    self.faceImageContainer.backgroundColor = current_color;
     
     if (!self.preset_one_set) {
         self.btnPresetOne.backgroundColor = current_color;
