@@ -27,6 +27,7 @@
 		06909A071982158E005AB618 /* ObamaCutout2.png in Resources */ = {isa = PBXBuildFile; fileRef = 06909A061982158E005AB618 /* ObamaCutout2.png */; };
 		06909A0919821803005AB618 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06909A0819821803005AB618 /* CoreBluetooth.framework */; };
 		06909A141982272A005AB618 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 06909A10198219B5005AB618 /* BLE.m */; };
+		069C2D53198791E30018835A /* cry2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 069C2D52198791E30018835A /* cry2.wav */; };
 		06F2A2F119877DCA00D68624 /* FrontBama.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F2A2F019877DCA00D68624 /* FrontBama.png */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		06909A0F198219B5005AB618 /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		06909A10198219B5005AB618 /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		06909A11198219B5005AB618 /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		069C2D52198791E30018835A /* cry2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cry2.wav; path = ../../artwork/cry2.wav; sourceTree = "<group>"; };
 		06F2A2F019877DCA00D68624 /* FrontBama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FrontBama.png; path = ../../artwork/FrontBama.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 		069099CB1981F898005AB618 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				069C2D52198791E30018835A /* cry2.wav */,
 				06F2A2F019877DCA00D68624 /* FrontBama.png */,
 				0601CDD019876FF2001F5F6D /* cry1.wav */,
 				0601CDCE1987638A001F5F6D /* cryface.png */,
@@ -270,6 +273,7 @@
 				064B687B1982418800B7435F /* icon.png in Resources */,
 				06909A071982158E005AB618 /* ObamaCutout2.png in Resources */,
 				069099CF1981F898005AB618 /* InfoPlist.strings in Resources */,
+				069C2D53198791E30018835A /* cry2.wav in Resources */,
 				069099D81981F898005AB618 /* Main.storyboard in Resources */,
 				0601CDD119876FF2001F5F6D /* cry1.wav in Resources */,
 			);

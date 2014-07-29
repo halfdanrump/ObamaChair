@@ -16,7 +16,7 @@
 int timeout = 2;
 float norm_sides = 0.2f;
 float norm_back = 0.34f;
-float sensitivity = 0.2f;
+float sensitivity = 0.05f;
 NSTimer *rssiTimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -76,6 +76,7 @@ NSTimer *rssiTimer;
         [self playAudio];
     } else{
         self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
+        [self.audioPlayer stop];
     }
 }
 
@@ -121,8 +122,10 @@ NSTimer *rssiTimer;
 - (IBAction)btnPreset1Pressed:(id)sender {
     if (self.preset_one_set) {
         self.preset_one_set = false;
+        [self.btnPresetOne setTitle:@"Remember" forState:UIControlStateNormal];
     } else{
         self.preset_one_set = true;
+        [self.btnPresetOne setTitle:@"Forget" forState:UIControlStateNormal];
     }
 //    self.btnLeftReading.backgroundColor = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
 
@@ -130,7 +133,7 @@ NSTimer *rssiTimer;
 }
 
 -(void) initAudioPlayer{
-    NSString *soundFilePath = [NSString stringWithFormat:@"%@/cry1.wav", [[NSBundle mainBundle] resourcePath]];
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/cry2.wav", [[NSBundle mainBundle] resourcePath]];
     
     NSLog(@"%@",soundFilePath);
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
@@ -178,7 +181,7 @@ NSTimer *rssiTimer;
 - (void)bleDidDisconnect
 {
     NSLog(@"->Disconnected");
-    
+    [self.btnPresetOne setTitle:@"" forState:UIControlStateNormal];
     [self.faceImageContainer.layer removeAllAnimations];
 //    [self rotateFaceImageWithAtSpeed:100.0f];
     
@@ -189,6 +192,8 @@ NSTimer *rssiTimer;
     self.lblGreetingButton.alpha = 1;
     self.lblGreetingTop.alpha = 1;
     self.faceImageContainer.image = [UIImage imageNamed:@"FrontBama.png"];
+    self.btnPresetOne.backgroundColor = [UIColor whiteColor];
+    self.btnSensorStatus.backgroundColor = [UIColor whiteColor];
 
     [rssiTimer invalidate];
 }
@@ -206,6 +211,7 @@ NSTimer *rssiTimer;
 {
     self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
     [self.faceImageContainer.layer removeAllAnimations];
+    [self.btnPresetOne setTitle:@"Remember" forState:UIControlStateNormal];
 //    [self rotateFaceImageWithAtSpeed:1 fromAngle:0 toAngle:-M_PI/2 andRepeat:1];
 //    [self rotateFaceImageWithAtSpeed:1 fromAngle:-M_PI/2 toAngle:M_PI/2 andRepeat:1];
 //    [self rotateFaceImageWithAtSpeed:1 fromAngle:M_PI/2 toAngle:0 andRepeat:1];
