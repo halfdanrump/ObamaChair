@@ -32,28 +32,43 @@ NSTimer *rssiTimer;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    Float32 buf[] = {0.0f, 0.0f, 0.0f};
+
     self.color = [[NSArray alloc] init];
+
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.btnPresetOne.backgroundColor = [UIColor whiteColor];
+    
     self.ble = [[BLE alloc] init];
     [self.ble controlSetup];
     self.ble.delegate = self;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.preset_one_set = false;
+    self.distance_preset_one = 0.0f;
     
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(obamaWasTapped)];
     [self.faceImageContainer addGestureRecognizer:singleTap];
     [self.faceImageContainer setMultipleTouchEnabled:YES];
     [self.faceImageContainer setUserInteractionEnabled:YES];
-    [self connectBLE];
     // Do any additional setup after loading the view.
+    
+    [NSTimer scheduledTimerWithTimeInterval:(float)0.1 target:self selector:@selector(checkDistanceForPreset) userInfo:nil repeats:YES];
+
 }
 
 -(void)obamaWasTapped{
     NSLog(@"YOU TOUCHED OBAMAS FACE!");
-        [self scaleFaceImage:0];
+//    [self scaleFaceImage:10];
+//    self.btnConnect.backgroundColor = [UIColor redColor];
 }
 
 
+-(void) checkDistanceForPreset{
+    if (self.distance_preset_one > 0.5) {
+        self.faceImageContainer.image = [UIImage imageNamed:@"cryface.png"];
+    } else{
+        self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
+    }
+}
 
 
 
@@ -74,6 +89,12 @@ NSTimer *rssiTimer;
 }
 */
 
+
+
+- (IBAction)btnConnectPressed:(id)sender {
+    [self connectBLE];
+}
+
 -(void) connectBLE{
     if (self.ble.activePeripheral)
         if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
@@ -90,26 +111,20 @@ NSTimer *rssiTimer;
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
 }
 
-- (IBAction)btnConnectPressed:(id)sender {
-    
-    
-//    if (self.ble.activePeripheral)
-//        if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
-//        {
-//            [[self.ble CM] cancelPeripheralConnection:[ble activePeripheral]];
-//            return;
-//        }
-//    
-//    if (self.ble.peripherals)
-//        self.ble.peripherals = nil;
-//    [self.btnConnect setEnabled:false];
-//    [self.ble findBLEPeripherals:timeout];
-//    
-//    [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
-    [self connectBLE];
-    
+-(void) flashObamaText{
+    [self.btnConnect setTitle:@"Touch me face <3" forState:UIControlStateNormal];
 }
 
+- (IBAction)btnPreset1Pressed:(id)sender {
+    if (self.preset_one_set) {
+        self.preset_one_set = false;
+    } else{
+        self.preset_one_set = true;
+    }
+//    self.btnLeftReading.backgroundColor = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
+
+
+}
 
 
 -(void) readRSSITimer:(NSTimer *)timer
@@ -132,6 +147,8 @@ NSTimer *rssiTimer;
 -(void) bleDidUpdateRSSI:(NSNumber *) rssi
 {
 }
+//-(void) readValue: (CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID p:(CBPeripheral *)p
+
 
 
 // When disconnected, this will be called
@@ -147,10 +164,13 @@ NSTimer *rssiTimer;
     // Schedule to read RSSI every 1 sec.
     rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
     
-    UInt8 bufm[3] = {0xA0, 0x01, 0x00};
-    
-    NSData *datam = [[NSData alloc] initWithBytes:bufm length:3];
-    [ble write:datam];
+
+}
+
+-(float) calculateColorDistanceForLeft:(float)left andRight:(float)right andBack:(float)back andPreset:(UIButton *) presetButton{
+    CGFloat* presetLRB = CGColorGetComponents(self.btnPresetOne.backgroundColor.CGColor);
+    float distance = pow(presetLRB[0] - left, 2) + pow(presetLRB[1] - right, 2) + pow(presetLRB[2] - back, 2);
+    return distance;
 }
 
 // When data is comming, this will be called
@@ -164,12 +184,20 @@ NSTimer *rssiTimer;
             self.reading_back = MAX((1.0f - data[i+3] / 255.0f) * (1.0f + norm_back) - norm_back, 0);
         }
     }
-    NSLog(@"left: %02f, right: %02f, back: %02f", self.reading_left, self.reading_right, self.reading_back);
-//    scaling = 0.5 + red * green * blue;
+    [self.btnPresetOne setFrame:CGRectMake(33, 36, 60, 60 * 1/self.reading_left)];
+
+    UIColor *current_color = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
     
-//    [NSTimer scheduledTimerWithTimeInterval:(float)0.51 target:self selector:@selector(scaleFaceImage:) userInfo:nil repeats:NO];
-//    self.view.backgroundColor = [UIColor color]
-    self.view.backgroundColor = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
+    self.faceImageContainer.backgroundColor = current_color;
+    
+    if (!self.preset_one_set) {
+        self.btnPresetOne.backgroundColor = current_color;
+    }
+    self.distance_preset_one = [self calculateColorDistanceForLeft:self.reading_left andRight:self.reading_right andBack:self.reading_back andPreset:self.btnPresetOne];
+
+    
+    NSLog(@"Distance %02f", self.distance_preset_one);
+
     
 }
 
@@ -197,10 +225,13 @@ NSTimer *rssiTimer;
 
 
 
+
+
 -(void) connectionTimer:(NSTimer *)timer
 {
     [btnConnect setEnabled:true];
-    [btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
+    
+    [btnConnect setTitle:@"" forState:UIControlStateNormal];
     
     if (ble.peripherals.count > 0)
     {

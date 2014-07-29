@@ -20,4 +20,11 @@
 @property (atomic) float reading_right;
 @property (atomic) float reading_back;
 
+@property (atomic) Boolean preset_one_set;
+@property (atomic) float distance_preset_one;
+//@property (atomic) Boolean preset_one_set;
+//@property (atomic) Boolean preset_one_set;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnPresetOne;
+
 @end
