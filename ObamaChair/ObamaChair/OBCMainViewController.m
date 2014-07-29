@@ -30,22 +30,27 @@ NSTimer *rssiTimer;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    Float32 buf[] = {0.0f, 0.0f, 0.0f};
+    self.color = [[NSArray alloc] init];
     self.ble = [[BLE alloc] init];
     [self.ble controlSetup];
     self.ble.delegate = self;
     self.view.backgroundColor = [UIColor blackColor];
-    
-//    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(obamaWasTapped)];
-//    [self.faceImageContainer addGestureRecognizer:singleTap];
-//    [self.faceImageContainer setMultipleTouchEnabled:YES];
-//    [self.faceImageContainer setUserInteractionEnabled:YES];
-//   [self.faceImageContainer add];
+    self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
+    self.faceImageContainer.alpha = 0;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(obamaWasTapped)];
+    [self.faceImageContainer addGestureRecognizer:singleTap];
+    [self.faceImageContainer setMultipleTouchEnabled:YES];
+    [self.faceImageContainer setUserInteractionEnabled:YES];
     // Do any additional setup after loading the view.
 }
 
-//-(void)obamaWasTapped{
-//    NSLog(@"YOU TOUCHED OBAMAS FACE!");
-//}
+-(void)obamaWasTapped{
+    NSLog(@"YOU TOUCHED OBAMAS FACE!");
+    [self scaleFaceImage:0];
+}
+
+
 
 
 
@@ -73,14 +78,12 @@ NSTimer *rssiTimer;
         if(self.ble.activePeripheral.state == CBPeripheralStateConnected)
         {
             [[self.ble CM] cancelPeripheralConnection:[ble activePeripheral]];
-//            [btnConnect setTitle:@"Connect" forState:UIControlStateNormal];
             return;
         }
     
     if (self.ble.peripherals)
         self.ble.peripherals = nil;
     [self.btnConnect setEnabled:false];
-//    btnConnect setEnabled:false];
     [self.ble findBLEPeripherals:timeout];
     
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
@@ -88,30 +91,6 @@ NSTimer *rssiTimer;
 }
 
 
-
-
-////
-//-(void) bleDidConnect
-//{
-//    NSLog(@"->Connected");
-//    
-//    
-//    //[colorthing backgroundColor: @"[UIColor redColor]"];
-//    
-//    self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
-//    self.view.backgroundColor = [UIColor blueColor];
-//    
-//    
-//    
-//    // send reset
-//    UInt8 buf[] = {0x04, 0x00, 0x00, 0x00};
-//    NSData *data = [[NSData alloc] initWithBytes:buf length:4];
-//    [ble write:data];
-//    
-//    // Schedule to read RSSI every 1 sec.
-//    rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
-//   
-//}
 
 -(void) readRSSITimer:(NSTimer *)timer
 {
@@ -141,11 +120,13 @@ NSTimer *rssiTimer;
     NSLog(@"->Connected");
     
     
-    //[colorthing backgroundColor: @"[UIColor redColor]"];
-    
-    self.faceImageContainer.image = [UIImage imageNamed:@"ObamaCutout2.png"];
-    
-    
+
+
+    self.faceImageContainer.alpha = 0.5;
+//    [self fadeInObama];
+//    [UIView animateWithDuration:5.0 animations:^{
+//        self.faceImageContainer.alpha = 0.5;
+//    }];
     
     // send reset
     UInt8 buf[] = {0x04, 0x00, 0x00, 0x00};
@@ -164,45 +145,44 @@ NSTimer *rssiTimer;
 // When data is comming, this will be called
 -(void) bleDidReceiveData:(unsigned char *)data length:(int)length
 {
-    //    NSLog(@"Length: %d", length);
-    UInt16 Value;
-    UInt16 reading_left, reading_right, reading_back;
-    for (int i = 0; i < length; i+=4)
-    {
-//        NSLog(@"0x%02X, 0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2], data[i+3]);
-        
+    for (int i = 0; i < length; i+=4){
         if (data[i] == 0x0B)
         {
-            reading_left = data[i+1];
-            reading_right = data[i+2];
-            reading_back = data[i+3];
-            Value = data[i+2] | data[i+1] << 8;
-            
-            
+            self.reading_left = 1.0f - data[i+1] / 255.0f;
+            self.reading_right = 1.0f - data[i+2] / 255.0f;
+            self.reading_back = 1.0f - data[i+3] / 255.0f;
         }
     }
-    float red = reading_left / 255.0f;
-    float blue = reading_right / 255.0f;
-    float green = reading_back / 255.0f;
-    NSLog(@"red: 0x%02f, green: 0x%02f, blue: 0x%02f", red, green, blue);
-    //    NSLog(@"%0.0f", red);
+//    NSLog(@"red: %02f, green: %02f, blue: %02f", red, green, blue);
+//    scaling = 0.5 + red * green * blue;
+    
+//    [NSTimer scheduledTimerWithTimeInterval:(float)0.51 target:self selector:@selector(scaleFaceImage:) userInfo:nil repeats:NO];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:self.reading_left green:self.reading_right blue:self.reading_back alpha:1.0];
+    
+}
+
+-(void) scaleFaceImage:(float) scaling{
+    [UIView animateWithDuration : 0.5
+                          delay : 0
+                        options : UIViewAnimationOptionBeginFromCurrentState
+                     animations : (void (^)(void)) ^{
+                         self.faceImageContainer.transform = CGAffineTransformMakeScale(scaling, scaling);
+                     }
+                      completion:^(BOOL finished){
+                          self.faceImageContainer.transform = CGAffineTransformIdentity;
+                      }];
     
 //    [UIView animateWithDuration : 0.5
 //                          delay : 0
 //                        options : UIViewAnimationOptionBeginFromCurrentState
 //                     animations : (void (^)(void)) ^{
-//                         self.faceImageContainer.transform = CGAffineTransformMakeScale(1.2, 1.2);
+//                         self.faceImageContainer.transform = CGAffineTransformMakeScale(1/scaling, 1/scaling);
 //                     }
-//                     completion:^(BOOL finished){
-//                         self.faceImageContainer.transform = CGAffineTransformIdentity;
-//                     }];
-    
-    self.view.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
-    
+//                      completion:^(BOOL finished){
+//                          self.faceImageContainer.transform = CGAffineTransformIdentity;
+//                      }];
 }
-
-
-
 
 
 

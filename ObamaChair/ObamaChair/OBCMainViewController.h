@@ -14,5 +14,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnConnect;
 @property (strong, nonatomic) IBOutlet UIImageView *faceImageContainer;
 @property (strong, nonatomic) BLE *ble;
+@property (strong, nonatomic) NSArray *color;
+
+@property (atomic) float reading_left;
+@property (atomic) float reading_right;
+@property (atomic) float reading_back;
 
 @end
